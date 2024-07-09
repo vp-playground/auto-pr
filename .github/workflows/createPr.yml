@@ -27,7 +27,7 @@ jobs:
             const body = `## 🗓 When\n\nLet's aim for release at 🚀 <!-- Release time here. for example, five o'clock -->.\n\n<!-- ## 📝 Note -->\n\n<!-- Additional release information. -->`;
             const head = `develop`;
             const base = 'main';
-            const { data: pr } = await github.pulls.create({
+            const { data: pr } = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title,
