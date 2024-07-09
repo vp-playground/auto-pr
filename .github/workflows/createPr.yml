@@ -1,0 +1,28 @@
+name: Create PR
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Get yyyy/MM/dd
+      - name: Get date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y/%m/%d')"
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "release: ${{ steps.date.outputs.date }}"
+          body: "## 🗓 When\n\nLet's aim for release at 🚀 <!-- Release time here. for example, five o'clock -->.\n\n<!-- ## 📝 Note -->\n\n<!-- Additional release information. -->"
+          branch: "develop"
+          base: "main"
+          draft: false
