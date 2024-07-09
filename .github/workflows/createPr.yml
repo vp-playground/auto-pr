@@ -18,11 +18,12 @@ jobs:
         run: echo "DATE=$(date +'%Y/%m/%d')" >> $GITHUB_ENV
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v6
+        uses: technote-space/create-pr-action@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: "release: ${{ steps.date.outputs.date }}"
-          body: "## 🗓 When\n\nLet's aim for release at 🚀 <!-- Release time here. for example, five o'clock -->.\n\n<!-- ## 📝 Note -->\n\n<!-- Additional release information. -->"
-          branch: "fod"
-          base: "main"
-          draft: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXECUTE_COMMANDS: |
+            echo "FoD PR!"
+          COMMIT_MESSAGE: "chore: release ${{ steps.date.outputs.date }}"
+          PR_TITLE: "release: ${{ steps.date.outputs.date }}"
+          PR_BRANCH_NAME: "develop"
+          PR_BODY: "## 🗓 When\n\nLet's aim for release at 🚀 <!-- Release time here. for example, five o'clock -->.\n\n<!-- ## 📝 Note -->\n\n<!-- Additional release information. -->"
