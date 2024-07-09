@@ -23,6 +23,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "release: ${{ steps.date.outputs.date }}"
           body: "## 🗓 When\n\nLet's aim for release at 🚀 <!-- Release time here. for example, five o'clock -->.\n\n<!-- ## 📝 Note -->\n\n<!-- Additional release information. -->"
-          branch: "develop"
+          branch: "fod"
           base: "main"
           draft: false
