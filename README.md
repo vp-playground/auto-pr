@@ -1,3 +1,3 @@
 # auto-pr
 
-what 5
+what 2
