@@ -34,7 +34,7 @@ jobs:
           script: |
             const date = process.env.DATE;
             const title = `Release ${date}`;
-            const body = "## 🗓 Changelogs\n\n${{steps.changelog.outputs.changes}}";
+            const body = `## 🗓 Changelogs\n\n${{steps.changelog.outputs.changes}}`;
             const head = `develop`;
             const base = 'main';
             const { data: pr } = await github.rest.pulls.create({
