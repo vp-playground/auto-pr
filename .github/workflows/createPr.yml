@@ -17,6 +17,16 @@ jobs:
         id: date
         run: echo "DATE=$(date +'%Y/%m/%d')" >> $GITHUB_ENV
 
+      - name: Update changelog
+        id: changelog
+        # Cspell:ignore requarks
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          fromTag: ${{ github.sha }}
+          toTag: ${{ github.event.before }}
+          writeToFile: false
+
       - name: Create PR
         uses: actions/github-script@v7
         with:
@@ -24,7 +34,7 @@ jobs:
           script: |
             const date = process.env.DATE;
             const title = `Release ${date}`;
-            const body = `## 🗓 When\n\nLet's aim for release at 🚀 <!-- Release time here. for example, five o'clock -->.\n\n<!-- ## 📝 Note -->\n\n<!-- Additional release information. -->`;
+            const body = "## 🗓 Changelogs\n\n${{steps.changelog.outputs.changes}}";
             const head = `develop`;
             const base = 'main';
             const { data: pr } = await github.rest.pulls.create({
