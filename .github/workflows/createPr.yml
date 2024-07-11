@@ -23,8 +23,8 @@ jobs:
         uses: requarks/changelog-action@v1
         with:
           token: ${{ github.token }}
-          fromTag: ${{ github.sha }}
-          toTag: ${{ github.event.before }}
+          fromTag: 'develop'
+          toTag: 'main'
           writeToFile: false
 
       - name: Create PR
